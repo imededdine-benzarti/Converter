@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Converter"
+             x:Class="Converter.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SubmitButtonValueConverter x:Key="submitValidation"/>
+            <local:PwdStrengthValueConverter x:Key="pwdstrValidation"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="20" VerticalOptions="CenterAndExpand">
+            <Entry x:Name="NameEntry" Text="" HeightRequest="40" Placeholder="USER"/>
+            <Entry x:Name="PasswordEntry" Text="" HeightRequest="40" Placeholder="PASSWORD" IsPassword="True"/>
+            <Button Text="LOGIN" IsEnabled="{Binding Source={x:Reference NameEntry}, Path=Text.Length, Converter={StaticResource submitValidation}}"/>
+            <Label Text="{Binding Source={x:Reference PasswordEntry}, Path=Text, Converter={StaticResource pwdstrValidation}}"/>
+        </StackLayout>
+   </ContentPage.Content>
+</ContentPage>
